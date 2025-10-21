@@ -29,4 +29,13 @@ db.connect((err) => {
   console.log('Connection Succesfully!');
 });
 
-
+app.get('/biodata', (req, res) => {
+  db.query('SELECT * FROM mahasiswa', (err, results) => {
+    if (err) {
+        console.error('Error fetching data:', err.stack);
+        res.status(500).send('Error fetching data');
+        return;
+    }
+    res.json(results);
+  });
+});
